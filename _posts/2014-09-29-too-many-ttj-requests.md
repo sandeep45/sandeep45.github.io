@@ -41,11 +41,10 @@ load balancer has being encountering this spike of `/ttj` requests.
 
 ![404 on AWS ELB](/assets/post1/404_on_elb.png)
 
-Now I need to know is this indeed a
-[DOS attack](http://en.wikipedia.org/wiki/Denial-of-service_attack),
+Now I need to know is this indeed a [DOS attack](http://en.wikipedia.org/wiki/Denial-of-service_attack),
 where these requests are coming from and so on.
 
-TO see the source IP address I updated my `nginx.conf` located at `/etc/nginx/cloud66_nginx.conf`.
+To see the source IP address I updated my `nginx.conf` located at `/etc/nginx/cloud66_nginx.conf`.
  logs to reveal the source IP rather than the load balance IP.
 
 ```
@@ -57,12 +56,13 @@ Now my logs looked had the source IP:
 
 ![log with source ip](/assets/post1/logs_with_ip.png)
 
-It seems like these requests are coming from a variety of reputable websites, various IP addresses spread across the globe.
-Seems unlikely that these guys are collectively doing anything malicious.
+It seems like these requests are coming from a variety of reputable websites,
+various IP addresses spread across the globe. Seems unlikely that these guys are collectively doing anything malicious.
 
-Now, its time to bring in AWS Support. After going back and forth with AWS I knew exactly what was happeneing:
+Now, its time to bring in AWS Support. After going back and forth with AWS round the clock kick ass awesome support,
+I knew exactly what was happening:
 
-Apparently **Amazon made an executive decision** that it should scale up our Load Balancer without letting us know.
+Apparently **Amazon made an executive decision** that it should scale up our Load Balancer **without letting us know**.
 This caused us to get a new Public IP address. This IP Address was previously being
 used as proxy and now that we had that IP address we were getting this requests.
 Amazon Support was nice enough to give me a new IP Address and resolve the issue.
