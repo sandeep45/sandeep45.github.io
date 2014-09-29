@@ -59,8 +59,8 @@ Now my logs looked had the source IP:
 It seems like these requests are coming from a variety of reputable websites,
 various IP addresses spread across the globe. Seems unlikely that these guys are collectively doing anything malicious.
 
-Now, its time to bring in AWS Support. After going back and forth with AWS round the clock kick ass awesome support,
-I knew exactly what was happening:
+Now, its time to bring in AWS Support. After going back and forth with AWS round the clock kick ass awesome
+support, I knew exactly what was happening:
 
 Apparently **Amazon made an executive decision** that it should scale up our Load Balancer **without letting us know**.
 This caused us to get a new Public IP address. This IP Address was previously being
