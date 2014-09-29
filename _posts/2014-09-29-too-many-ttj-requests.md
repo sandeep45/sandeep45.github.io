@@ -60,9 +60,11 @@ Now my logs looked had the source IP:
 It seems like these requests are coming from a variety of reputable websites, various IP addresses spread across the globe.
 Seems unlikely that these guys are collectively doing anything malicious.
 
-Now, its time to bring in AWS Support. After going back and forth with AWS it seems like
-a our ELB was automatically scaled up by Amazon which gave us a new Public IP address. This IP Address
-was previously being used as proxy and now that we had that IP address we were getting this requests.
+Now, its time to bring in AWS Support. After going back and forth with AWS I knew exactly what was happeneing:
+
+Apparently **Amazon made an executive decision** that it should scale up our Load Balancer without letting us know.
+This caused us to get a new Public IP address. This IP Address was previously being
+used as proxy and now that we had that IP address we were getting this requests.
 Amazon Support was nice enough to give me a new IP Address and resolve the issue.
 
 ![aws email ip changed](/assets/post1/aws_email_ip_changed.png)
