@@ -3,7 +3,7 @@ title: Here is where I talk
 email: sandeep@listenloop.com
 description: > # this means to ignore newlines until "baseurl:"
   Here i plan to share things I get to do as CTO @ listenloop,
-  general technolgy things which interest with me and every now and then some other random things.
+  general technolgy things which interest me and every now and then perhaps I'll talk about other stuff which affects me.
 # baseurl: "sandeep45.github.io" # the subpath of your site, e.g. /blog/
 url: "http://sandeep45.github.io" # the base hostname & protocol for your site
 twitter_username: sandeeparneja

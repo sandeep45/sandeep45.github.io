@@ -62,8 +62,9 @@ various IP addresses spread across the globe. Seems unlikely that these guys are
 Now, its time to bring in AWS Support. After going back and forth with AWS round the clock kick ass awesome
 support, I knew exactly what was happening:
 
-Apparently **Amazon made an executive decision** that it should scale up our Load Balancer **without letting us know**.
-This caused us to get a new Public IP address. This IP Address was previously being
+Apparently **Amazon made an executive decision** that it should scale up
+our Load Balancer **without letting us know**. This caused us to get a
+new Public IP address. This IP Address was previously being
 used as proxy and now that we had that IP address we were getting this requests.
 Amazon Support was nice enough to give me a new IP Address and resolve the issue.
 
