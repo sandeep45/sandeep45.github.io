@@ -34,7 +34,7 @@ I found that i have two sets of logs which grew very quickly on busy days:
 
 The goal of the rest of this post is to **document** the steps I took to move these logs to my `/mnt` 80GB _ephemeral_ drive. Ephemeral means that if you change the instance type for the server you will lose it.
 
-1. Setup new log directories:
+1.  Setup new log directories:
 
     ```
     sudo su -
@@ -43,17 +43,16 @@ The goal of the rest of this post is to **document** the steps I took to move th
     cd log
     mkdir nginx
     mkdir web
-
     # Create empty log files for unicorn as it will complain with files being present
     cd /mnt/log/web
     echo "" > unicorn.stdout.log
     echo "" > unicorn.stderr.log
-
     # ease out permissions as various process being run by various users need to access them:
     chmod 777 -R /mnt
     ```
 
-2. Make Nginx send logs to the new directory
+
+2.  Make Nginx send logs to the new directory
 
     ```
     # /etc/nginx/cloud66_nginx.conf
@@ -61,7 +60,7 @@ The goal of the rest of this post is to **document** the steps I took to move th
     access_log /mnt/log/nginx/access.log varnish_log;
     ```
 
-3. Make Unicorn send logs to the new directory
+3.  Make Unicorn send logs to the new directory
 
     ```
     # $STACK_PATH/config/unicorn.rb
@@ -69,20 +68,20 @@ The goal of the rest of this post is to **document** the steps I took to move th
     stderr_path "#{ENV['LOG_PATH']}/web/unicorn.stderr.log"
     ```
 
-4. Add Env Variable which has location of new log directory
+4.  Add Env Variable which has location of new log directory
 
     ```
     LOG_PATH=\mnt\log
     ```
 
-5. Create new Log Rotation File
+5.  Create new Log Rotation File
 
     ```
     cd /etc/logrotate.d
     ln -s $STACK_PATH/config/mnt.conf ./mnt
     ```
 
-6.  Build mnt.conf in Rails App so it can be commited and tracked
+6.  Build `mnt.conf` in Rails App so it can be commited and tracked
 
     ```
     /mnt/log/*/*.log {
