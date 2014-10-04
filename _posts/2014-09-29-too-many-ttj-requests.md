@@ -1,6 +1,6 @@
 ---
 layout: post
-title: too many ttj requests
+title: too many /ttj requests
 published: True
 categories: [DevOps]
 tags: [Amazon, ELB, Cloud66, DOS Attack]
@@ -58,5 +58,5 @@ Apparently **Amazon made an executive decision** that it should scale up our Loa
 
 ![aws email ip changed](/assets/post1/aws_email_ip_changed.png)
 
-For now this problem is at rest. Next steps, which I'll cover in a separate post would be to better defend my app so its less susceptible to something like this.
+For now this problem is at rest. Next steps, which I have covered in a [separate post]({% post_url 2014-09-29-move-logs-on-aws-to-a-different-drive %}) would be to better defend my app so its less susceptible to something like this.
 
