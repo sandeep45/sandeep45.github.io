@@ -15,7 +15,7 @@ Its on demand cost is $0.995 per hour. i.e. $716 for a 30 day month.
 ![rds pricing](/assets/post3/rds_cost.png)
 
 # Amazon EC2
-If we were to do this ourselves, I would got with a memory optimized r3.2xlarge  with 8 vCPU' and 61GB of RAM, it comes with 1 SSD of 160GB.
+If we were to do this ourselves, I would go with a memory optimized r3.2xlarge  with 8 vCPU's and 61GB of RAM, it comes with 1 SSD of 160GB.
 
 Its on demand cost is $0.700 per hour. i.e. $504 for a 30 day month.
 
@@ -31,7 +31,7 @@ So total I am out 504 + 9 + 12 + 12 = $537
 
 # Conclusion
 
-So setting up DB manually on an EC2 instance along with cloud66 support gives the same level of comfort as doing it on RDS gives. Its also cheaper when going the EC2 + cloud66 route. Additionally, with cloud66 I have all my architecture being built and managed at one spot. So in theory tomorrow if i want to ditch AWS and go to rackspace its easier for me to packup and just move as all my belongings are in space - cloud66.
+So setting up DB manually on an EC2 instance along with cloud66 support gives the same level of comfort as doing it on RDS gives. Its also cheaper when going the EC2 + cloud66 route. Additionally, with cloud66 I have all my architecture being built and managed at one spot. So in theory tomorrow if i want to ditch AWS and go to [rackspace](http://www.rackspace.com) its easier for me to pack up and just move as all my belongings are in space - cloud66.
 
 **The verdict**: EC2 + cloud66 wins over RDS.
 
