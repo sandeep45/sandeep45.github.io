@@ -9,17 +9,12 @@ layout: default
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
   </header>
 
-  {% include leaderboard.html %}
-
   <article class="post-content">
     {{ content }}
   </article>
 
-  {% include leaderboard.html %}
-
 </div>
 
-<div id="disqus_thread"></div>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

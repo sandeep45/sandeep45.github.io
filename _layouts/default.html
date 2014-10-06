@@ -7,17 +7,18 @@
 
     {% include header.html %}
 
-    {% include leaderboard.html %}
-
     <div class="page-content">
       <div class="wrapper">
+        {% include leaderboard.html %}
+        <br/><br/>
         {{ content }}
+        {% include leaderboard.html %}
       </div>
     </div>
 
     {% include footer.html %}
 
-    {% include leaderboard.html %}
+    {% include ga.html %}
   </body>
 
 </html>
