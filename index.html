@@ -4,6 +4,8 @@ layout: default
 
 <div class="home">
 
+  {% include skyscraper.html %}
+
   {% include large_skyscraper.html %}
 
   <h1 class="page-heading">Posts</h1>
@@ -22,6 +24,8 @@ layout: default
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-  {% include medium_rectangle.html %}
+  {% include medium_rectangle_left.html %}
+
+  {% include medium_rectangle_right.html %}
 
 </div>
