@@ -1,5 +1,5 @@
 ---
-layout:
+layout: post
 title: Quick WebServer on OS X
 categories: []
 tags: []
