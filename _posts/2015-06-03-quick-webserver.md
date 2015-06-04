@@ -17,5 +17,5 @@ This is my new favorite way to pop up a webserver whereever I want it.
 I use it when building standalone javascript apps, cloning and debugging a page locally etc.
 Its solves the cross domain error one would get when running a HTML/JS app and making server call
 
-
+![Cross Domain Error](/assets/post4/cross_domain_error.npg)
 
