@@ -10,6 +10,7 @@ published: True
 
 printName = function(){ console.log(this.name) }
 
+    ```
 window.name = "foo"
 printName()
 RESULT: foo
@@ -52,3 +53,4 @@ $(document).on("click", function(e){ console.log(this == e.target) })
 Click child node in document
 RESULT: false
 
+    ```
