@@ -4,7 +4,6 @@ title: Event Bubbling vs Capturing
 categories: [javascript]
 tags: []
 published: True
-
 ---
 
 Be default the event are setup as *Bubbling*. If you are using jQuery, then it only works with Bubbling. Older versions of IE also only support Bubbling.
