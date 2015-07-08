@@ -65,6 +65,21 @@ return {
 
 __Note:__ Adding methods to the exports module, only adds it on the `exports` object for that module. On the next module when `exports` module is mentioned as dependency it will not have the methods added on the `exports` module previously.
 
+Another thing to note, is that you can't replce the exports object with another object and expect that object to get returned when the module is added as a dependency.
+
+You can do this:
+
+````
+exports.name = "sandeep";
+````
+But not this:
+
+````
+obj={};
+obj.name="sandeep";
+exports=obj;
+````
+
 2. module
 
 Just ask for module in the dependency list and receive it. Now you can do:
