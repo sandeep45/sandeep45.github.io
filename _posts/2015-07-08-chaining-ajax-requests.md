@@ -43,16 +43,27 @@ Lets go over the API's available in the jQuery Deferred Object.
 
 
 * __$.Deferred([beginMethod])__: Factory method to create the deferred object in its initial state of _pending_
-* deferredObj.resolve(args)__: This moves the state of the promise to _resolved_ and thus causes the `done` listeners on the promise to fire. It passes args to the ha__ndler. The args could represent the `value` which was pending and is now available.
+
+* __deferredObj.resolve(args)__: This moves the state of the promise to _resolved_ and thus causes the `done` listeners on the promise to fire. It passes args to the ha__ndler. The args could represent the `value` which was pending and is now available.
+
 * __deferredObj.reject(args)__: This moves the state of the promise to rejected and thus causes the `fail` listeners on the promise to fire. It passes args to the handler.
+
 * __deferredObj.notify(args)__: This does not change the state but causes the `progress` listeners on the promise to fire. It passes args to the handler.
+
 * __deferredObj.state()__: This returns the state of the promise/deferred object. It could be _pending, resolved or rejected_
+
 * __deferredObj.promise()__: gives an object which can be returned and observed for when the `value` is available
+
 * __promiseObject.then(df,[ff],[pf])__: takes methods to be called when the promise is resolved, rejected or has progress
+
 * __promiseObject.done(df)__: takes method to be called when the promise is resolved
+
 * __promiseObject.always(af)__: takes method to be called when the promise is either resolved, rejected or has progress
+
 * __promiseObject.fail(ff)__: takes method to be called when the promise has failed
+
 * __promiseObject.progress(pf)__: takes method to be called when the promise has progress
+
 * __$.when(promise, [promise+])__: returns a `promise` which changes state only when all the promises passed in resolve.
 
 The `deferredObj` and `promiseObject` object are the same thing besides the subtle difference that on the `promise` object one can not call `resolve`, `reject`, `notify` etc. Therefore the `promise` object is only good for listening and thus an excellent candidate to be returned by the original method. Now all methods can be called on the `deferred` object but you should return the `promise` object and add callbacks on it. So in short: **Change state of deferred and listen for state change on promise.**
