@@ -41,20 +41,19 @@ We want to increase the height of a div from 100 to 500 and then let the next fu
 
 Lets go over the API's available in the jQuery Deferred Object.
 
-Method | Description
---- | ---
-$.Deferred([beginMethod]) | Factory method to create the deferred object in its initial state of _pending_
-deferredObj.resolve(args) | This moves the state of the promise to _resolved_ and thus causes the `done` listeners on the promise to fire. It passes args to the handler. The args could represent the `value` which was pending and is now available.
-deferredObj.reject(args) | This moves the state of the promise to rejected and thus causes the `fail` listeners on the promise to fire. It passes args to the handler.
-deferredObj.notify(args) | This does not change the state but causes the `progress` listeners on the promise to fire. It passes args to the handler.
-deferredObj.state() | This returns the state of the promise/deferred object. It could be _pending, resolved or rejected_
-deferredObj.promise() | gives an object which can be returned and observed for when the `value` is available
-promiseObject.then(df,[ff],[pf]) | takes methods to be called when the promise is resolved, rejected or has progress
-promiseObject.done(df) | takes method to be called when the promise is resolved
-promiseObject.always(af) | takes method to be called when the promise is either resolved, rejected or has progress
-promiseObject.fail(ff) | takes method to be called when the promise has failed
-promiseObject.progress(pf) | takes method to be called when the promise has progress
-$.when(promise, [promise+]) | returns a `promise` which changes state only when all the promises passed in resolve.
+
+* $.Deferred([beginMethod]): Factory method to create the deferred object in its initial state of _pending_
+* deferredObj.resolve(args): This moves the state of the promise to _resolved_ and thus causes the `done` listeners on the promise to fire. It passes args to the handler. The args could represent the `value` which was pending and is now available.
+* deferredObj.reject(args): This moves the state of the promise to rejected and thus causes the `fail` listeners on the promise to fire. It passes args to the handler.
+* deferredObj.notify(args): This does not change the state but causes the `progress` listeners on the promise to fire. It passes args to the handler.
+* deferredObj.state(): This returns the state of the promise/deferred object. It could be _pending, resolved or rejected_
+* deferredObj.promise(): gives an object which can be returned and observed for when the `value` is available
+* promiseObject.then(df,[ff],[pf]): takes methods to be called when the promise is resolved, rejected or has progress
+* promiseObject.done(df): takes method to be called when the promise is resolved
+* promiseObject.always(af): takes method to be called when the promise is either resolved, rejected or has progress
+* promiseObject.fail(ff): takes method to be called when the promise has failed
+* promiseObject.progress(pf): takes method to be called when the promise has progress
+* $.when(promise, [promise+]): returns a `promise` which changes state only when all the promises passed in resolve.
 
 The `deferredObj` and `promiseObject` object are the same thing besides the subtle difference that on the `promise` object one can not call `resolve`, `reject`, `notify` etc. Therefore the `promise` object is only good for listening and thus an excellent candidate to be returned by the original method. Now all methods can be called on the `deferred` object but you should return the `promise` object and add callbacks on it. So in short: **Change state of deferred and listen for state change on promise.**
 
