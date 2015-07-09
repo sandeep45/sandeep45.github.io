@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://localhost:3000/assets/jquery.js"></script>
+  <script>
+  $(function(){
+    var increaseWidth = function(){
+    var deferredObj = $.Deferred();
+
+    // logic to increase width and call resolve when done
+    $("span").animate(
+      { "width": "500px"},
+      { complete: function() {
+          deferredObj.resolve();
+        },
+        duration: 2000
+      }
+    );
+
+    return deferredObj.promise();
+  };
+
+  var addContent = function(){
+    $("span").html("yo yo honey singh!")
+  };
+
+  increaseWidth().then(addContent);
+  });
+  </script>
+</head>
+<body>
+  <span style="width:0px;height:50px;border:1px solid black">
+  </span>
+</body>
+</html>
