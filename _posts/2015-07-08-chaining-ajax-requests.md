@@ -27,7 +27,9 @@ Let's start by using the deferred object to re-write the code we had above which
 
 <iframe width="100%" height="300" src="//jsfiddle.net/sandeep45/grauqgvb/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-Ajax methods by default in jQuery are returning a `promise` of a `deferred` object which is created withe every ajax request. jQuery is also internally call `resolve` on the `deferred` object when the ajax is successfully and calling `reject` when the ajax method fails. This updates the state on the promise and fires our callbacks attached to it via the `then` method.
+Ajax methods by default in jQuery are returning a `promise` of a `deferred` object which is created withe every ajax request. jQuery is also internally calling `resolve` on the `deferred` object when the ajax is successfully and calling `reject` when the ajax method fails. This updates the state on the promise and fires our callbacks attached to it via the `then` method.
+
+The thing to note here is that `then` calls the next function only after the first functions promise has been resolved.
 
 So jQuery did a lot of thing's here for us when we used the ajax method. But promises in jquery are not limited to ajax and can be used anywhere you want. Below you will see how.
 
@@ -74,10 +76,10 @@ The `when` factory method is excellent choice when you want to create a new prom
 
 Now sometimes, things might finish up and faster than you expect. Meaning the state on a deferred will move from _pending_ to _resolved_ even before you get an opportunity to add an event handler on the promise of that deferred object. This is non-issue here because any handler added after the state has changed would fire immediately if its state had already been reached. For e.g.
 
-<iframe width="100%" height="300" src="//jsfiddle.net/sandeep45/surjo53w/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/surjo53w/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 References:
-[Futures_and_promises Wikipedia]((https://en.wikipedia.org/wiki/Futures_and_promises))
-[MSDN Article](https://msdn.microsoft.com/en-us/magazine/gg723713)
-[jQuery Deferred Object](http://api.jquery.com/category/deferred-object/)
-[CommonJS Promises/A Interface](http://wiki.commonjs.org/wiki/Promises/A).
+- [Futures_and_promises Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
+- [MSDN Article](https://msdn.microsoft.com/en-us/magazine/gg723713)
+- [jQuery Deferred Object](http://api.jquery.com/category/deferred-object/)
+- [CommonJS Promises/A Interface](http://wiki.commonjs.org/wiki/Promises/A).
