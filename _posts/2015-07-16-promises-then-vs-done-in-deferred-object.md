@@ -185,6 +185,7 @@ d.then(function(){
 When we have one `then` vs one `done`, then they work exactly the same. When you have multiple then's, then things work differently
 
 References:
+
 - [jQuery Then](http://api.jquery.com/deferred.then/)
 
 - [jQuery Done](http://api.jquery.com/deferred.done/)

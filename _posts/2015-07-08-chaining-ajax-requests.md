@@ -79,6 +79,7 @@ Now sometimes, things might finish up and faster than you expect. Meaning the st
 <iframe width="100%" height="300" src="//jsfiddle.net/surjo53w/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 References:
+
 - [Futures_and_promises Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
 
 - [MSDN Article](https://msdn.microsoft.com/en-us/magazine/gg723713)
