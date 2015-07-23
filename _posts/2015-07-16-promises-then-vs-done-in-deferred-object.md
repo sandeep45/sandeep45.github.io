@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Promises: Then vs Done in Deferred Object
+title: Promises Then vs Done in Deferred Object
 categories: [promises]
-tags: [javascript, promises, jquery, deferred object]
+tags: [javascript, promises, jquery]
 published: True
 
 ---
