@@ -80,7 +80,7 @@ Now sometimes, things might finish up and faster than you expect. Meaning the st
 
 References:
 
-- [Futures_and_promises Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
+- [Futures and Promises Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
 
 - [MSDN Article](https://msdn.microsoft.com/en-us/magazine/gg723713)
 
