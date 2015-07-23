@@ -80,6 +80,9 @@ Now sometimes, things might finish up and faster than you expect. Meaning the st
 
 References:
 - [Futures_and_promises Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
+
 - [MSDN Article](https://msdn.microsoft.com/en-us/magazine/gg723713)
+
 - [jQuery Deferred Object](http://api.jquery.com/category/deferred-object/)
+
 - [CommonJS Promises/A Interface](http://wiki.commonjs.org/wiki/Promises/A).

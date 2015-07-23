@@ -7,7 +7,7 @@ published: True
 
 ---
 
-They (`done` and `then`) look similar in basic cases. That is because they are the same. Here is an example where they look and do the same thing.
+They (`done` and `then`) look similar in basic cases. That is because they are pretty similar. Here is an example where they look and do the same thing.
 
 Lets say we have these two functions `func1` and `func2`. Both of them print to the console after 1 second and resolve their promise after 1 second.
 
@@ -155,11 +155,11 @@ d2.resolve("who") who
 => VM702:2 in then 3
 ````
 
-##### My Understanding
+### My Understanding
 
 In *then*, the next *then* wont get called till the first *then*'s returned promise resolves. So the first *then* is controlling when the next *then* gets called. This is different from the *done*. In *done*, the first *done* gets called and then the next *done*. What the first *done*, returns and resolves or rejects has no bearing on the second *done* being called. All *done* has is precedence. The first *done* gets called first and then the next one and then the one after that.
 
-##### UseCase
+### UseCase
 
 *then* is perefect for chaining deferred tasks where you dont want the next task to run till the first one has completed. To achieve this effect call each task chained by *then's* and return the first deferred task in the first done and second deferred task in the secone one and so on and forth. The deferred task returned becomes the deferred object on which the second *then* is now anchored and wont run till the first one is complete.
 
@@ -186,6 +186,7 @@ When we have one `then` vs one `done`, then they work exactly the same. When you
 
 References:
 - [jQuery Then](http://api.jquery.com/deferred.then/)
+
 - [jQuery Done](http://api.jquery.com/deferred.done/)
 
 
