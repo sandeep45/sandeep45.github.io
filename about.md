@@ -9,7 +9,7 @@ I should write something about me here.
 
 Perhaps I dont think its needed yet.
 
-![Picture iconing Me](/assets/italian_soldier.jpg "Me")
+![Picture iconing Me](/assets/post1/italian_soldier.jpg)
 
 ~~~
 def where
