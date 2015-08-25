@@ -1,0 +1,81 @@
+concerns
+
+Service Objects
+
+scoped
+e.g. searching when using params to do filters
+
+lambda
+responds to call
+Lambda also responds to call so in your tests you have the possibility to mock service with lambda, which is quite convenient.
+so we have a service called buildAccountOnSiteScout
+another service called SetupUser calls this service
+when testing SetupUser we can just pass in a proc. procs have a call method.
+the SetupUser will just simply call the buildAccountOnSiteScout.call,
+and a proc will nicely substitute it.
+
+subfolders for services as long as classes are in a module which represents its folder
+verb
+no serive in the name
+has a call, one point of entry
+represents a business process. not crud methods
+
+e.g. ActivateCampaign
+
+This internally does index of campaigns, with a filter,
+then does show on it,
+then does an update on it with a hardcoded param set of status => true
+and finally returns if activation succeeded or not
+
+they contain business logic and represent that
+
+PrepareCloseLoopAttributionReport
+
+this gets all visitors in LL system
+then all visitors in marketing automation fields
+then checks user settings on what fields are marked to hold wins
+then checks which visitors got saw an advertisement
+then prepares a CSV with those visitors
+
+Dependency Injection
+
+have an intialize method and a build method
+
+if the service relies on something else like another service or the first 10 users
+then get those depencies for the service in the build method.
+put them as instances on the class.
+the service will always work on the intstances.
+now when testing we can just call .new and set up the instances.
+this prevents us from writing test code like expect(User).to receive()
+We can instead just make a mock user and pass that in.
+It embraces the tell, dont ask methodology
+
+def build(count=10)
+  @users = User.limit(count)
+end
+
+class doAwesome
+
+  def self.call(*args)
+    new self(*args).call
+  end
+
+  def call
+    # does its thing
+  end
+
+  private
+
+  attr_accessor :task, :place, :times
+
+end
+
+doAwesome.call("Rolller Coaster", "6 Flags", 10)
+
+immutable.
+once initialize it holds its data and should not change its state.
+this way its easy to reason
+
+Aldous
+
+Virtus
