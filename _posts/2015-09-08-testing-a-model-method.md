@@ -49,6 +49,7 @@ Lets first do the `Given` part:
 Now we have a user, who has a visitor and that user also has events of the kind we want.
 
 Next lets do the `When` part:
+
 ````
   after(:each) do
     @result = @v.process_for_events_called_agent_assigned
