@@ -1,3 +1,8 @@
+JSON.parse ' not allowed in the insider. attribute name must also be quoted. outside needs to be a quote
+best is to have ' on the outside and " on the inside.
+
+JSON.parse '[ {"f": "f"} ]'
+
 concerns
 
 Service Objects
@@ -79,3 +84,11 @@ this way its easy to reason
 Aldous
 
 Virtus
+
+
+CSRF warning logs me out! WTF!
+
+rails includes does preload and eager_load
+preload fetch all records as seperate query
+eager_load does the join
+http://blog.arkency.com/2013/12/rails4-preloading/
