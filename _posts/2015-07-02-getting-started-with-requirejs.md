@@ -226,4 +226,5 @@ To use in production, we need to minify all resoures in to 1 file and load that 
 5. giving path to the __one__ output file
 6. giving permission to remove license as its required for sourcemaps
 
+To compile and build the file I will run `r.js -o proxy-build.js`
 Now in the `built` directory I have one minified file for production.
