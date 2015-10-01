@@ -1,6 +1,6 @@
 ---
 layout: post
-title: service objects
+title: Service Objects
 categories: [service objects, rails]
 tags: [poro, rails, service objects]
 published: True
@@ -14,7 +14,8 @@ How do we decide what is a `well formed` service object and what should go in it
 
 ### My opinion
 
-1. Placement & Name
+#### Placement & Name
+
 Put them in `/app/services/`
 Update `application.rb` to load them `config.autoload_paths += ["#{config.root}/app/services}"]`
 Name them like a verb/action, with a `*_service.rb` in the end. e.g. `analyze_user_points_service.rb`. It should be named like a method (`analyze_user_points_service.rb` and not like a Class (`UserPointsAnalyzerService`).
@@ -25,7 +26,8 @@ Name them like a verb/action, with a `*_service.rb` in the end. e.g. `analyze_us
   end
 ````
 
-2. Return Value
+#### Return Value
+
 Tells success & failure and is also a Data Transfer Object. I like to have one class named `ServiceResult`. The result here is immutable as the instances only have `attr_reader`.
 
 ````
@@ -63,9 +65,11 @@ class ServiceResult
 end
 ````
 
-3. Error
-Errors should be caught and failure result should be returned.
-In some rare cases like background jobs, we need to raise an error so the job can be retried or the error can be recorded.
+#### Error
+
+Errors should be caught and failure result should be returned. I think that the service when errors out to do something in essense has failed to do it. So an error should be recorded as a failure error. At the smae time the error should be recorded somewhere so it can be triaged later.
+
+In some rare cases like when using them in background jobs, we need to raise an error from the service so the job can be retried or the error can be recorded. Raising the error would be an exception to the convention here.
 
 ````
 def call
@@ -78,7 +82,8 @@ rescue => e
 end
 ````
 
-4. Public Action Method
+#### Public Action Method
+
 This is the one and only publically exposed method. I like calling it `call` as that's what Lambda's and proc's also take. I think `perform` is also an accetable name. My resque jobs have that name so it sits well with me.
 
 ````
@@ -87,7 +92,7 @@ def call
 end
 ````
 
-5. Factory Method
+#### Factory Method
 Having a `build` method makes a lot of things better. With `build` we are doing DI. This gives more flexibility and less coupling. The class'es new method is getting all dependecies built in the `build` and passed. The `new` just sets the instances and moves on. Testing is easier coz we can setup different dependecies and pass it in. The service is now immutable. Everytime build is called it creates a new instance.
 
 ````
@@ -105,23 +110,23 @@ end
 
 ````
 
-Refernces
+### Refernces
 
-- http://multithreaded.stitchfix.com/blog/2015/06/02/anatomy-of-service-objects-in-rails/
+- [multithreaded.stitchfix.com/blog/2015/06/02/anatomy-of-service-objects-in-rails/](http://multithreaded.stitchfix.com/blog/2015/06/02/anatomy-of-service-objects-in-rails/)
 
-- http://adamniedzielski.github.io/blog/2014/11/25/my-take-on-services-in-rails/
+- [adamniedzielski.github.io/blog/2014/11/25/my-take-on-services-in-rails/](http://adamniedzielski.github.io/blog/2014/11/25/my-take-on-services-in-rails/)
 
-- http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html
+- [solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html](http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html)
 
-- http://code.tutsplus.com/tutorials/service-objects-with-rails-using-aldous--cms-23689
+- [code.tutsplus.com/tutorials/service-objects-with-rails-using-aldous--cms-23689](http://code.tutsplus.com/tutorials/service-objects-with-rails-using-aldous--cms-23689)
 
-- https://github.com/envato/aldous
+- [github.com/envato/aldous](https://github.com/envato/aldous)
 
-- http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html
+- [blog.rubybestpractices.com/posts/rklemme/017-Struct.html](http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html)
 
-- https://netguru.co/blog/service-objects-in-rails-will-helpTasks
+- [netguru.co/blog/service-objects-in-rails-will-helpTasks](https://netguru.co/blog/service-objects-in-rails-will-helpTasks)
 
-- http://brewhouse.io/blog/2014/04/30/gourmet-service-objects.html
+- [brewhouse.io/blog/2014/04/30/gourmet-service-objects.html](http://brewhouse.io/blog/2014/04/30/gourmet-service-objects.html)
 
 
 
