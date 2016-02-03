@@ -13,7 +13,7 @@ This is a continuaiton of my [previous post]http://sandeep45.github.io/javscript
 
 Lets start with a primer on `this`:
 
-1. `this` refers to `window` if accessed globally. But in `strict` mode, in global mode it would be undefined.
+1\. `this` refers to `window` if accessed globally. But in `strict` mode, in global mode it would be undefined.
 
 ````
 (function(){
@@ -29,7 +29,9 @@ console.log(window.name == this.name);
 })();
 ````
 
-2. `this` refers to an instance if in constructor mode
+
+
+2\. `this` refers to an instance if in constructor mode
 
 ````
 function Food(n){
@@ -39,7 +41,7 @@ var f = new Food("chicken makhni");
 console.log(f.name); //chicken makhni
 ````
 
-3. `this` refers to an object if in a method inside an object.
+3\. `this` refers to an object if in a method inside an object.
 
 ````
 var player1 = {
@@ -51,7 +53,7 @@ var player1 = {
 player1.printName(); // player's name is: sandeep arneja
 ````
 
-4. `this` refers to DOMElement when used as an event listener
+4\. `this` refers to DOMElement when used as an event listener
 
 ````
 $(document.body).on("click", function(){
@@ -59,7 +61,7 @@ $(document.body).on("click", function(){
 })
 ````
 
-5. `this` refers to an object when it is bounded to it via `bind`, `call` or `apply`
+5\. `this` refers to an object when it is bounded to it via `bind`, `call` or `apply`
 
 ````
   window.name = "yo yo honey singh"
@@ -135,7 +137,7 @@ Above is another example of how the value of this changed depending upon how it 
 
 Lets cover two more concepts and then we will be ready to dive in to how `this` changes with Fat Arrows (`=>`) in ES6.
 
-1. Function Scope: Any variable which is defined inside a function, is visible inside the entire function. This is different from block scope.
+1\. Function Scope: Any variable which is defined inside a function, is visible inside the entire function. This is different from block scope.
 
 ````
 var a = function(){
@@ -160,7 +162,7 @@ console.log(c); // 5
 console.log(b); // Uncaught ReferenceError: b is not defined
 ````
 
-2. Lexical Scoping: The scope of the inner function includes the scope of the outter function.
+2\. Lexical Scoping: The scope of the inner function includes the scope of the outter function.
 
 ````
 var outter = function(){
@@ -210,7 +212,7 @@ Reference:
 - http://pierrespring.com/2010/05/11/function-scope-and-lexical-scoping/
 
 
-## Fat Arrow and This
+## Fat Arrow and `This`
 
 A function defined with fat arrow syntax or style resolved `this` lexically only. The `this` keyword no longer has the special properties mentioned above. Lets take an example:
 
