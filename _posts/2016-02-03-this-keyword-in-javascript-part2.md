@@ -76,7 +76,7 @@ $(document.body).on("click", function(){
 
 ## Scope-By-Flow
 
-In Javascript the `this` keyword is resolved as `scope-by-flow`. I took this keyword from a blog post at [jsrocks](http://jsrocks.org/2014/10/arrow-functions-and-their-scope/). What i mean to say is that the value of `this` can change depending upon how the function which has `this` is called.
+In Javascript the `this` keyword is resolved as `scope-by-flow`. I borrowed this term of `scope-by-flow` from a blog post at [jsrocks](http://jsrocks.org/2014/10/arrow-functions-and-their-scope/). What i mean to say is that the value of `this` can change depending upon how the function which has `this` is being called.
 
 ````
 window.name = "bananas";
@@ -113,7 +113,7 @@ callback(player1.printName); // player's name is: bananas
 
 ````
 
-In the example above again the flow has changed, the `printName` function is not longer called on the object, meaining its not like `object`, followed by a `dot`, followed by function.
+In the example above again the flow has changed, the `printName` function is no longer called on the object, meaining its not like `object`, followed by a `dot`, followed by function.
 
 Similar effects come with the bind, call & apply functions. They change the value of `this` even when the function is a method on an object and `this` is supposed to be pointing to the object.
 
@@ -130,7 +130,7 @@ x = a.print;
 x(); // global window name
 ````
 
-Above is another example of how the value of this changed depending upon how it was called. Here `this` is resolved based upon on how it is called.
+Above is another example of how the value of this changed depending upon how it was called. Here `this` is resolved based upon on how it is called. When calling a method, like `object` `.` `methodName`, then the value of `this` in the function is equal to the `object` which appers before the `dot`.
 
 
 ## Function Scope & Lexical Scoping
