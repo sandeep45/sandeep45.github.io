@@ -1,8 +1,8 @@
----
+--- post
 layout:
 title: this-keyword-in-javascript-part2
-categories: []
-tags: []
+categories: [javascript, this, es6, fat-arrow]
+tags: [javascript, this, es6, fat-arrow]
 published: True
 
 ---
