@@ -9,7 +9,7 @@ published: True
 
 # `This` keyword in Fat arrow functions
 
-This is a continuaiton of my [previous post]http://sandeep45.github.io/javscript/2015/06/09/this-keyword-in-javascript.html where I attempted to explain how `this` behaves in javascript. In this post I will continue to explore how `this` keyword works with fat arrow style functions (`=>`) which are available in ES6.
+This is a continuaiton of my [previous post](http://sandeep45.github.io/javscript/2015/06/09/this-keyword-in-javascript.html) where I attempted to explain how `this` behaves in javascript. In this post I will continue to explore how `this` keyword works with fat arrow style functions (`=>`) which are available in ES6.
 
 Lets start with a primer on `this`:
 
@@ -76,7 +76,7 @@ $(document.body).on("click", function(){
 
 ## Scope-By-Flow
 
-In Javascript the `this` keyword is resolved as `scope-by-flow`. I took this keyword from a blog post at [jsrocks]http://jsrocks.org/2014/10/arrow-functions-and-their-scope/. What i mean to say is that the value of `this` can change depending upon how the function which has `this` is called.
+In Javascript the `this` keyword is resolved as `scope-by-flow`. I took this keyword from a blog post at [jsrocks](http://jsrocks.org/2014/10/arrow-functions-and-their-scope/). What i mean to say is that the value of `this` can change depending upon how the function which has `this` is called.
 
 ````
 window.name = "bananas";
