@@ -7,7 +7,7 @@ published: True
 
 ---
 
-# This keyword in Fat arrow functions
+# `This` keyword in Fat arrow functions
 
 This is a continuaiton of my [previous post]http://sandeep45.github.io/javscript/2015/06/09/this-keyword-in-javascript.html where I attempted to explain how `this` behaves in javascript. In this post I will continue to explore how `this` keyword works with fat arrow style functions (`=>`) which are available in ES6.
 
