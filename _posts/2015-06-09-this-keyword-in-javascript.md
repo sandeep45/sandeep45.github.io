@@ -76,5 +76,5 @@ RESULT: false
 
 ## Part 2
 
-I have written a [part 2](http://sandeep45.github.io/javascript/this/es6/fat-arrow/2016/02/03/this-keyword-in-javascript-part2.html) to this post. It has more examples, concepts and covers how this resolved in the fat arrow syntax fucntions defined in ES6.
+I have written a [part 2](http://sandeep45.github.io/javascript/this/es6/fat-arrow/2016/02/03/this-keyword-in-javascript-part2.html) to this post. It has more examples, concepts and covers how `this` is resolved in with the fat arrow syntax functions defined in ES6.
 
