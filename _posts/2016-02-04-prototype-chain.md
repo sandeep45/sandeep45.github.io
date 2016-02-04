@@ -1,6 +1,6 @@
 ---
 layout: post
-title: prototype chain
+title: prototype-chain
 categories: [javascript, es6]
 tags: [prototype-chain, es6, javascript, classes, inheritence]
 
