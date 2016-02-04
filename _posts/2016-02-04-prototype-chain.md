@@ -3,7 +3,7 @@ layout: post
 title: prototype-chain
 categories: [javascript, es6]
 tags: [prototype-chain, es6, javascript, classes, inheritence]
-
+published: True
 ]
 published: True
 
