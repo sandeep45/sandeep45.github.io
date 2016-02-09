@@ -371,8 +371,8 @@ console.log(o.__proto__ == A.prototype); // true
 
 1\. Whenever a property is looked up, the entire prototype chain could be checked looking for the property. This could be expensive.
 2\. When iterating over the enumreable properties, all properties in the prototype chain are iterated over.
-3\. Use `hasOwnProperty` to figure if the property is actually `owned` and not off the `prototype` chain.
-4\. Use `getOwnPropertyNames` to fetch names of only `owned` properties
+3\. Use `obj.hasOwnProperty` to figure if the property is actually `owned` and not off the `prototype` chain.
+4\. Use `Object.getOwnPropertyNames` to fetch names of only `owned` properties
 
 ## Word of Caution
 
