@@ -92,3 +92,11 @@ rails includes does preload and eager_load
 preload fetch all records as seperate query
 eager_load does the join
 http://blog.arkency.com/2013/12/rails4-preloading/
+
+SQL join with multiple tables and getting count from each of them.
+
+SELECT ad.id
+     (SELECT COUNT(*) FROM impressions i WHERE am.id=i.ad_message_id) AS impressions_count,
+     (SELECT COUNT(*) FROM ad_clicks ac WHERE am.id=ac.ad_message_id) AS ad_clicks_count
+FROM ad_messages am
+ORDER BY am.id ASC
