@@ -24,7 +24,7 @@ published: True
 - multi line selection `Shift + Alt + Command + Mouse` 
 - multi word selection `Control + G`
 - my trick to bring cursor on multiple adjacent lines without using mouse:
-  - select the \n of current line 
+  - select the `\n` of current line 
   - then do `control + g` to bring cursor to next line as well.
   - then use arrows to move cursor around or bring them all to the begnining by `command + left arrow` and then move them together.
 - selecting text by intelligently growing outwards - `Alt + Up Arrow`
@@ -33,7 +33,7 @@ published: True
 - More detail by `Command + F1`
 - While I am typing this in `.md` file its showing me a HTML rendered preview on the right 
 - Setup softwrap in editor and unselect showing of the wrap only on current line.
-![Soft Wrap Options](../assets/webstorm_softwrap_options.png) My preference has been to use softwrap with an extra indent.
+  [Soft Wrap Options](../assets/webstorm_softwrap_options.png) My preference has been to use softwrap with an extra indent.
 - Browse and use Live Templates by - `Command + j`
 - To reformat code, `Alt + Command + l`
 - To indent code `Contrl + Alt + i`
@@ -55,16 +55,16 @@ published: True
 - check off `add virtual space` in settings to be able to scroll past end of file
 - databse view `shift + shift` followed by typing `database`
 - switch between project windows back and forth by `Command + BackTick`  and `Command + Shift + BackTick `
+- Detect's things you are using like webpack, database, npm, .gitignore etc. and automatically suggest to plugins to make life better 
+
 
 ## References
 
-- https://egghead.io/lessons/misc-webstorm-installing-custom-color-schemes-dayleress-colour-schemes#/tab-transcript
-- Theme https://github.com/JustSid/AfterglowIntelliJ
-- Theme https://github.com/ChrisRM/material-theme-jetbrains
-- Color https://github.com/boneskull/jetbrains-afterglow-scheme
-- ~/Library/Preferences/RubyMine2016.2/colors
+- [https://egghead.io/lessons/misc-webstorm-installing-custom-color-schemes-dayleress-colour-schemes#/tab-transcript](https://egghead.io/lessons/misc-webstorm-installing-custom-color-schemes-dayleress-colour-schemes#/tab-transcript)
+- [Theme Aftherglow](https://github.com/JustSid/AfterglowIntelliJ)
+- [Theme Material](https://github.com/ChrisRM/material-theme-jetbrains)
+- [Color](https://github.com/boneskull/jetbrains-afterglow-scheme) ~/Library/Preferences/RubyMine2016.2/colors
 
-It will detect things you are using, and automatically suggest that hey install this plugin to make your life better with this file. e.g. .gitignore
 
 ### Multiple Line Cursor
 
