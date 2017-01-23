@@ -1,3 +1,126 @@
+`axios.defaults.withCredentials`
+this allows a request made to another domain to setup a cookie for itself
+domain A makes request to domain B
+domain b says set cookie "abc=xyz", host => B, this is set by the response header
+the browser will set this cookie only if `withCredentials` is set to `true`
+
+
+rails params issue
+2.3.1 :078 > def sandeep
+2.3.1 :079?>   return {}
+2.3.1 :080?>   end
+ => :sandeep
+2.3.1 :081 > sandeep = sandeep.merge :x => "y"
+NoMethodError: undefined method `merge' for nil:NilClass
+2.3.1 :082 > sandeep = sandeep().merge :x => "y"
+ => {:x=>"y"}
+2.3.1 :083 > sandeep
+ => {:x=>"y"}
+2.3.1 :084 > sandeep.class
+ => Hash
+
+
+rails cache counter
+the `.size` method gets confused when and reads the wrong value from cache counter
+
+lets say
+Campaign -> Accounts -> Prospects -> Impressions -> Clicks
+
+we add a cache counter on clicks to store its value on impressions. this is done like this:
+
+class Click
+  belongs_to :impressions, :cache_counter => true
+end
+
+and then on Impression table we add a column called `clicks_count`
+
+Now if you create an click like this: `Click.create :impression_id => 1`
+You will notice the clicks_count on impressions has gone up.
+Impression.find(1).clicks_count # 1
+Impression.find(1).clicks.size # 1 (No query, as size will use cache counter)
+Impression.find(1).clicks.count # 1 (Makes query to get count)
+
+Now if we add a `clicks_count` column on `Campaign` and store some value on manually lets say 45 and then do
+Campaign.clicks.size # 45 ( No query, we get 45)
+size is again not making a query and just reading results of `clicks_count`
+but the reality is that we dont have a cache counter on Campaign
+and if it had made a query it would have gotten the real result.
+
+rails callback
+in 1st after_creaate callback, update the record. this will fire the after_update, skipping the after_save and the 2nd after_create callback. once its done updating then it will fire the after_save and then it will fire the 2nd after_create. It is doing so even though the order these are written in specify the after_create's before the after_update
+
+after_create :my_first_after_create_method
+after_create :my_second_after_create_method
+after_save :my_after_save_method
+after_update :my_after_update_method
+
+def my_first_after_create_method
+  puts in "my_first_after_create_method"
+  self.update :name => Time.now
+end
+
+def my_second_after_create_method
+  puts "my_second_after_create_method"
+end
+
+def my_after_save_method
+  puts "my_after_save_method"
+end
+
+def my_after_update_method
+  return if self.new_record?
+  puts "my_after_update_method"
+end
+
+User.create :name => "Hey"
+
+Output:
+my_first_after_create_method
+my_after_update_method
+my_after_save_method
+my_second_after_create_method
+
+WHATTT!!
+
+calling job from callback notes
+1. delay running it by a few seconds
+
+url = 1
+delay 10 seconds
+run it
+Job -> User.find 1
+positive: whatever happens represents whats in the db 10 seconds from the time after_save is called
+doesn;t care if it was committed
+
+pass in the values
+Marshal.dump(object) and on the other side I do a Marshal.restore(object)
+grow size, really fast
+
+after_create_commit
+after_update_commit
+after_destroy_commit
+
+we dont know the last value?
+move the if statements outside the after_comit callback, in to procs,
+grows ugly very quickly
+
+or
+previous_changes
+http://api.rubyonrails.org/classes/ActiveModel/Dirty.html
+it allows us to check wheter something changed inside the after_comit
+when the job runs, it will read whats in the database
+stripe card, campaign
+
+after_save
+becomes
+after_create_commit
+after_update_commit
+
+or
+after_commit
+return if self.destroyed?
+
+
 JSON.parse ' not allowed in the insider. attribute name must also be quoted. outside needs to be a quote
 best is to have ' on the outside and " on the inside.
 

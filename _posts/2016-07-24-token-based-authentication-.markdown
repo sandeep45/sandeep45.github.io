@@ -75,6 +75,8 @@ You may also need to load `lib` directory as part of your rails app if you are n
     config.autoload_paths += %W(#{config.root}/lib)
 ````
 
+**Update 9/5/2016 - Add `request.session_options[:skip] = true` in a `before_action` to not set cookie the session cookie
+
 I also disable CSRF token protection in my application controller as it's no longer needed since I have already disabled cookies. Do this by commenting to protect from forgery line in application_controller.rb
 
 ````
@@ -83,7 +85,8 @@ class ApplicationController < ActionController::Base
 end
 ````
 
-There are other ways also to delete / disable this cookie. For reference look at the stack overflow question - http://stackoverflow.com/questions/5435494/rails-3-disabling-session-cookies
+There are other ways also to delete / disable this cookie. For reference look at the stack overflow question -
+<http://stackoverflow.com/questions/5435494/rails-3-disabling-session-cookies>
 
 
 ### The second step is to enable you're authentication System to accept json requests. I did this by adding `respond_to :json`
@@ -101,15 +104,21 @@ class SessionsController < Devise::SessionsController
 end
 ````
 
+````
+class PasswordsController < Devise::PasswordsController
+  respond_to :json
+end
+````
+
 Then I updated my routes to use these new controllers when doing registration and session handling.
 
 ````
-  devise_for :users, :controllers => {:registrations => "registrations", sessions: "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", sessions: "sessions", :passwords: "passwords"}
 ````
 
 We can now check our set up by making a request to the login page and ensuring that we get back JSON with users record in it.
 
-Endpoint: http://localhost:3000/users/sign_in
+Endpoint: <http://localhost:3000/users/sign_in>
 
 Request Header:
 
@@ -132,7 +141,7 @@ To learn more about logging in viq Ajax requests you can refer to Andrew's blog 
 
 ### the third step is to require token on pages which require authentication.
 
-I am doing this by using a gem called `simple_token_authentication`. https://github.com/gonzalo-bulnes/simple_token_authentication
+I am doing this by using a gem called `simple_token_authentication`. <https://github.com/gonzalo-bulnes/simple_token_authentication>
 
 In my application controller I add `acts_as_token_authentication_handler_for User`. this makes all controllers which extends from application controller to require user token whenever any action of the controllers is accessed.
 
@@ -140,7 +149,7 @@ Also in my User model I add `acts_as_token_authenticatable` and create a `auth_t
 
 We can now test this by visiting a controller action. We will get a 401 error because all actions require authentication. Then we can visit the same page again but this time with the token and we should get the page's content back.
 
-Endpoint: http://localhost:3000/phone_numbers
+Endpoint: <http://localhost:3000/phone_numbers>
 
 Request Header:
 
