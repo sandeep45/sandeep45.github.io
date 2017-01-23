@@ -1,3 +1,4 @@
+mass insert and update
 `axios.defaults.withCredentials`
 this allows a request made to another domain to setup a cookie for itself
 domain A makes request to domain B
