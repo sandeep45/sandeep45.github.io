@@ -1,3 +1,13 @@
+coalece
+greatest
+Cast - select & where
+
+strftime('%Y-%m-%d %H:%M:%S.%6N')
+
+timezone
+
+---
+
 mass insert and update
 `axios.defaults.withCredentials`
 this allows a request made to another domain to setup a cookie for itself
