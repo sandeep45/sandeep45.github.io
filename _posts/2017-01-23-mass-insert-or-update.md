@@ -106,4 +106,4 @@ ActiveRecord::Base.connection.execute(sql_string)
 
 ```
 
-In this approach we are making exactly 1 SQL call. Its O(1). We do this by doing providing multiple values to the `insert` statement and using the special keyword `excluded` to access the value being inserted with there is a conflict.
+In this approach we are making exactly 1 SQL call. Its O(1). We do this by doing providing multiple values to the `insert` statement and using the special keyword `excluded` to access the value being inserted when there is a conflict.
