@@ -1,10 +1,9 @@
 ---
 title: Setting up static Website on AWS S3
-status: false
 layout: post
 categories: [Aws, s3, cloudfront, route 53 React, React-router]
 tags: [Aws, s3, cloudfront, route 53 React, React-router]
-published: False
+published: True
 ---
 
 Lets go over how to deploy a static website built in React to the cloud using AWS.
