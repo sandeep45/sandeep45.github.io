@@ -53,10 +53,11 @@ ActiveRecord::Base.transaction do
     user.udpate_attributes item
   end
 end
+```
 
 Here by wrapping all the requests in 1 transaction, we are saving on opening and closing N transactions. This is certainly an improvement over the previous solution, but still wont cut it when processing a large number of records. This is primarily because its making 2N transactions.
 
-```
+
 
 #### v0.3
 

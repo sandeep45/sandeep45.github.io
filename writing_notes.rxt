@@ -1,3 +1,21 @@
+How to to run a locally installed npm package
+
+option 1. go to node_modules, then in to the package and then run `node ./index.js`
+option 2. load up ./node_modules in your PATH
+option 3. install the package globally with `npm install -g package_name` and then run package directly
+option 4. use npm-run. You will first need to install npm-run, globally
+
+---
+
+const y = {name: "y"};
+const x = {name: "x"};
+
+const ans = {...x, ...y, name: "ans"};
+console.info(ans);
+the one on the right wins
+
+---
+
 coalece
 greatest
 Cast - select & where
