@@ -1,3 +1,92 @@
+CAP Theorem
+
+
+
+2.3.1 :098 > Campaign.all
+  Campaign Load (0.8ms)  SELECT "campaigns".* FROM "campaigns"
++----+-------+---------+----------+---------+---------+----------+---------+---------+---------+---------+---------+---------+----------+---------+----------+---------+---------+---------+--------+---------+---------+----------+---------+
+| id | name  | user_id | status   | dest... | ss_l... | ss_lo... | ss_a... | max_... | rema... | form... | clic... | impr... | time_... | crea... | updat... | acco... | acco... | last... | markup | arch... | last... | statu... | recu... |
++----+-------+---------+----------+---------+---------+----------+---------+---------+---------+---------+---------+---------+----------+---------+----------+---------+---------+---------+--------+---------+---------+----------+---------+
+| 1  | first | 1       | active   | http... |         | true     | true    | 300.0   | 300.0   | 0       | 0       | 0       | 0        | 2017... | 2017-... | 6       | 0       |         | 2.0    |         |         |          | true    |
+| 3  | prod1 | 2       | paused   | http... |         | true     | true    | 300.0   | 500.0   | 0       | 0       | 0       | 0        | 2017... | 2017-... | 6       | 0       |         | 2.0    |         | 2017... |          | true    |
+| 4  | yoyo  |         | in_re... |         |         | true     | true    | 0.0     | 0.0     | 0       | 0       | 0       | 0        | 2017... | 2017-... | 1       | 0       |         | 2.0    |         |         |          | true    |
++----+-------+---------+----------+---------+---------+----------+---------+---------+---------+---------+---------+---------+----------+---------+----------+---------+---------+---------+--------+---------+---------+----------+---------+
+3 rows in set
+2.3.1 :099 > Campaign.includes(:ss_rtb_campaign).where("campaigns.id is not ?", nil).find_each {|c| puts c.id }
+  Campaign Load (0.8ms)  SELECT  "campaigns".* FROM "campaigns" WHERE (campaigns.id is not NULL) ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.4ms)  SELECT "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" IN (1, 3, 4)
+1
+3
+4
+ => nil
+2.3.1 :100 > Campaign.includes(:ss_rtb_campaign).where("campaigns.id is not ?", nil).find_each {|c| puts "#{c.id} - #{c.ss_rtb_campaign}" }
+  Campaign Load (0.7ms)  SELECT  "campaigns".* FROM "campaigns" WHERE (campaigns.id is not NULL) ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.3ms)  SELECT "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" IN (1, 3, 4)
+1 - #<SsRtbCampaign:0x007f8876f043e8>
+3 - #<SsRtbCampaign:0x007f8876f04280>
+4 -
+ => nil
+2.3.1 :101 > Campaign.includes(:ss_rtb_campaign).where("campaigns.id is not ?", nil).find_each {|c| puts "#{c.id} - #{c.ss_rtb_campaign.try(:id)}" }
+  Campaign Load (0.7ms)  SELECT  "campaigns".* FROM "campaigns" WHERE (campaigns.id is not NULL) ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.7ms)  SELECT "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" IN (1, 3, 4)
+1 - 1
+3 - 5
+4 -
+ => nil
+2.3.1 :102 > Campaign.includes(:ss_rtb_campaign).find_each {|c| puts "#{c.id} - #{c.ss_rtb_campaign.try(:id)}" }
+  Campaign Load (0.9ms)  SELECT  "campaigns".* FROM "campaigns" ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.5ms)  SELECT "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" IN (1, 3, 4)
+1 - 1
+3 - 5
+4 -
+ => nil
+2.3.1 :103 > Campaign.joins(:ss_rtb_campaign).find_each {|c| puts "#{c.id} - #{c.ss_rtb_campaign.try(:id)}" }
+  Campaign Load (1.0ms)  SELECT  "campaigns".* FROM "campaigns" INNER JOIN "ss_rtb_campaigns" ON "ss_rtb_campaigns"."campaign_id" = "campaigns"."id" ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.5ms)  SELECT  "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" = $1 LIMIT $2  [["campaign_id", 1], ["LIMIT", 1]]
+1 - 1
+  SsRtbCampaign Load (0.4ms)  SELECT  "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" = $1 LIMIT $2  [["campaign_id", 3], ["LIMIT", 1]]
+3 - 5
+ => nil
+2.3.1 :104 > Campaign.left_outer_joins(:ss_rtb_campaign).find_each {|c| puts "#{c.id} - #{c.ss_rtb_campaign.try(:id)}" }
+  Campaign Load (0.8ms)  SELECT  "campaigns".* FROM "campaigns" LEFT OUTER JOIN "ss_rtb_campaigns" ON "ss_rtb_campaigns"."campaign_id" = "campaigns"."id" ORDER BY "campaigns"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+  SsRtbCampaign Load (0.5ms)  SELECT  "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" = $1 LIMIT $2  [["campaign_id", 1], ["LIMIT", 1]]
+1 - 1
+  SsRtbCampaign Load (0.4ms)  SELECT  "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" = $1 LIMIT $2  [["campaign_id", 3], ["LIMIT", 1]]
+3 - 5
+  SsRtbCampaign Load (0.7ms)  SELECT  "ss_rtb_campaigns".* FROM "ss_rtb_campaigns" WHERE "ss_rtb_campaigns"."campaign_id" = $1 LIMIT $2  [["campaign_id", 4], ["LIMIT", 1]]
+4 -
+ => nil
+2.3.1 :105 >
+
+
+
+
+Error setting certificate on load balancer
+Server Certificate not found for the key: arn:aws:iam::687065209424:server-certificate/june122017
+
+https://screencast.com/t/oZBIhHuG
+
+a table with no data, but order and limit is slow
+
+SLOW:
+select * from impressions inner join prospects on (prospects.id = impressions.prospect_id) inner join accounts on accounts.id = prospects.account_id where accounts.id = 75206 order by impressions.id limit 1
+FAST:
+select * from impressions inner join prospects on (prospects.id = impressions.prospect_id) inner join accounts on accounts.id = prospects.account_id where accounts.id = 75206 order by impressions.id
+so sorting is not the issue. its fast when it comes to sorting and displaying all records
+but slow when it comes to just displaying 1 record
+https://dba.stackexchange.com/questions/110636/postgres-poor-performance-on-order-by-id-desc-limit-1/110919
+
+select i.* from (select impressions.* from impressions inner join prospects on (prospects.id = impressions.prospect_id) inner join accounts on accounts.id = prospects.account_id where accounts.id = 75206 order by impressions.id) as i order by i.id ASC limit 1
+
+select * from (select impressions.* from impressions inner join prospects on (prospects.id = impressions.prospect_id) inner join accounts on accounts.id = prospects.account_id where accounts.id = 75206 order by impressions.id) as i order by i.id ASC limit 1
+
+select * from
+	(select impressions.* from impressions inner join prospects on (prospects.id = impressions.prospect_id) inner join accounts on accounts.id = prospects.account_id where accounts.id = 75206 order by impressions.id)
+	as i order by i.id ASC limit 1
+
+
+
+
 How to to run a locally installed npm package
 
 option 1. go to node_modules, then in to the package and then run `node ./index.js`
