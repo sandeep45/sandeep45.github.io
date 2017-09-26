@@ -1,5 +1,5 @@
 ---
-title: 10 easy steps to create Rails App for an experienced Developer
+title: 10 easy steps Guide for an experienced developer to create a Rails 5.0 API only app
 status: 
 layout: post
 categories: [Redux, React, React-router]
@@ -88,6 +88,11 @@ run the rails server and make a hit to get the tweets
 rails s
 http://localhost:3000/tweets
 ```
+
+## hirb
+
+**coming soon**
+
 
 #### Reference
 
