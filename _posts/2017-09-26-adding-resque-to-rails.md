@@ -1,5 +1,5 @@
 ---
-title: Guide for ane experienced developer to add resque to a Rails App
+title: Guide for an experienced developer to add resque to a Rails App
 status: 
 layout: post
 categories: [Resque, Rails]
