@@ -10,39 +10,47 @@ published: True
 Let start the basic command - `distinct`. Regardless of your belief it will:
 - Make each row unique
 - When checking for uniqueness it will look at all columns selected.
-- It doesn't care for whats in parenthesis around it.
-- It has no effect on what columns are displayed.
+- It does not care for whats in parenthesis around it.
+- It does not send any column to display.
 - You dont do distinct on any columns
-- It is just a keyword added at the beginning of the select
+- It is just a keyword added at the beginning of the select statement
+- It is not proceeded by parenthesis or a comma.
 
 ### Scenario 1
 
 Lets print all `organizations` with just the `user_defined_status` column. With the help of `distinct` we should get only 1 row, as all organizations have the same value of `nil` for `user_defined_status` column
 
 ```ruby
-Organization.select('distinct user_defined_status')
+Organization.
+  select('distinct user_defined_status')
 ```
 
 ```sql
-SELECT distinct user_defined_status FROM "organizations"
+SELECT distinct user_defined_status
+FROM "organizations"
 ```
 
+```
 +----+---------------------+
 | id | user_defined_status |
 +----+---------------------+
 |    |                     |
 +----+---------------------+
+```
 
 Cool, so distinct works as expected since we see only 1 row printed. But this example kind of sucks as the value is blank. Lets just do another example:
 
 ```ruby
- Campaign.select("name")
+ Campaign.
+  select("name")
 ```
 
 ```sql
-SELECT "campaigns"."name" FROM "campaigns"
+SELECT "campaigns"."name"
+FROM "campaigns"
 ```
 
+```
 +----+------+
 | id | name |
 +----+------+
@@ -53,15 +61,19 @@ SELECT "campaigns"."name" FROM "campaigns"
 |    | foo  |
 |    | foo  |
 +----+------+
+```
 
 ```ruby
-Campaign.select("distinct name")
+Campaign.
+  select("distinct name")
 ```
 
 ```sql
-SELECT distinct name FROM "campaigns"
+SELECT distinct name 
+FROM "campaigns"
 ```
 
+```
 +----+------+
 | id | name |
 +----+------+
@@ -69,6 +81,7 @@ SELECT distinct name FROM "campaigns"
 |    | soup |
 |    |      |
 +----+------+
+```
 
 Cool again. `distinct` has narrowed down the results so each row is has a unique `campaigns.name`
 
@@ -77,40 +90,45 @@ Cool again. `distinct` has narrowed down the results so each row is has a unique
 Lets add more columns to the output:
 
 ```ruby
-Organization.select('distinct user_defined_status, credits')
+Organization.
+  select('distinct user_defined_status, credits')
 ```
 
 ```sql
-SELECT distinct user_defined_status, credits FROM "organizations"
+SELECT distinct user_defined_status, credits 
+FROM "organizations"
 ```
 
-Output:
-
+```
 +----+---------------------+---------+
 | id | user_defined_status | credits |
 +----+---------------------+---------+
 |    |                     | 101.0   |
 |    |                     | 0.0     |
 +----+---------------------+---------+
+```
 
 In the output above you can see that each row is unique. Lets add parenthesis around user_defined_status and see if makes rows unique by just that column or does it still look at all columns.
 
 ```ruby
-Organization.select('distinct(user_defined_status), credits')
+Organization.
+  select('distinct(user_defined_status), credits')
 ```
 
 ```sql
-SELECT distinct(user_defined_status), credits FROM "organizations"
+SELECT distinct(user_defined_status), credits 
+FROM "organizations"
 ```
 
+```
 +----+---------------------+---------+
 | id | user_defined_status | credits |
 +----+---------------------+---------+
 |    |                     | 101.0   |
 |    |                     | 0.0     |
 +----+---------------------+---------+
-
-So we can see adding parenthesis around a column made no different to the `distinct` command. Both rows are printed even though they both have the same value of `nil` for `user_defined_status`. 
+```
+So we can see adding parenthesis around a column made no difference to the `distinct` command. Both rows are printed even though they both have the same value of `nil` for `user_defined_status`. 
 
 ### Scenario 3
 
@@ -130,6 +148,7 @@ Organization.
  ORDER BY organizations.id, campaigns.name
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
@@ -140,8 +159,9 @@ Organization.
 |    | 2      | foo       |
 |    | 2      |           |
 +----+--------+-----------+
+```
 
-In the output above we can see that each organization has three campaigns, so we got a total of 6 rows. Lets add `distinct` to this query and see what we get. What we should get are distinct rows and not unique organizations or campaigns.
+In the output above we can see that each organization has 3 campaigns, so we got a total of 6 rows. Lets add `distinct` to this query and see what we get. What we should get are distinct rows and not unique organizations or campaigns.
 
 ```ruby
 Organization.
@@ -157,6 +177,7 @@ Organization.
  ORDER BY organizations.id, campaigns.name
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
@@ -165,10 +186,11 @@ Organization.
 |    | 2      | foo       |
 |    | 2      |           |
 +----+--------+-----------+
+```
 
 So here we can see `distinct` working again. It removed 2 rows, as the values were producing duplicate rows. Note here, even though distinct worked and removed duplicate rows, we have 2 rows for organization 1, and 2 rows for organization 2. Before we had 3, but now have 2. 2 is better than 3, but what if we want only 1 row per organization. What if the task is to print 1 row per organization with any 1 campaign name it has?
 
-This can be done by using `distinct on` and `group by`. 
+This can be done by using `distinct on` or `group by`. 
 
 ### Scenario 4
 
@@ -190,7 +212,7 @@ GROUP BY organizations.id
 ORDER BY organizations.id, campaigns.name
 ```
 
-Ehhhh... Breaks applied. This wont work and error out. One a `group by` has been applied, then all other columns from the table on the right which have multiple values, must either also be in the `group_by` that is therefore being unique or must be in an aggregate function and thus again being unique. This makes sense because on the left side, sql is only printing 1 organization, but each organization has 3 campaigns, it needs to know which campaign out of the 3 to print on that row. We need to tell that by using an aggregate function.
+Ehhhh... Breaks applied. This wont work and error out. Once a `group by` has been applied, then all other columns from the table on the right which have multiple values, must either also be in the `group_by` that is therefore being unique or must be in an aggregate function and thus again being unique. This makes sense because on the left side, sql is only printing 1 organization, but each organization has 3 campaigns, it needs to know which campaign out of the 3 to print on that row. We need to tell that by using an aggregate function.
 
 The exact error SQL throws:
 
@@ -217,12 +239,14 @@ GROUP BY organizations.id
 ORDER BY organizations.id
 ```
 
+```
 +----+---------------------+--------+
 | id | user_defined_status | org_id |
 +----+---------------------+--------+
 |    |                     | 1      |
 |    |                     | 2      |
 +----+---------------------+--------+
+```
 
 In the example above, i added `organizations.user_defined_status` column instead of `campaigns.name`. It didint complain because this column is on the `organization` and therefore we dont have multiples of these.
 
@@ -242,6 +266,7 @@ GROUP BY organizations.id, campaigns.name
 ORDER BY organizations.id, campaigns.name
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
@@ -250,6 +275,7 @@ ORDER BY organizations.id, campaigns.name
 |    | 2      | foo       |
 |    | 2      |           |
 +----+--------+-----------+
+```
 
 In this example above I am using `campaigns.name` and it no longer complains because I have added it to the `group_by` clause. Now `organizations.id` & `campaigns.name` put together defined the rows being printed, therefore we dont have multiple of `campaigns.name` and thus no error.
 
@@ -271,14 +297,18 @@ Okay now lets go back to the orignal problem of us wanting to print 1 row per or
  ORDER BY organizations.id
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
 |    | 1      | foo       |
 |    | 2      | foo       |
 +----+--------+-----------+
+```
 
-Ahhha, finally we got what we wanted. We were able to do this by using `array_agg` which basically joined all the multiple campaign names together and then we just said to print us the one at index 2. We said 2, but could have said any 0, 1 or 2. To better understand this, lets print them all.
+Ahhha, finally we got what we wanted. We were able to do this by using `array_agg` which basically joined all the multiple campaign names together and then we just said to print us the one at index 2. We said 2, but could have said any 0, 1 or 2. 
+
+To better understand this, lets print them all.
 
 ```ruby
 Organization.
@@ -296,18 +326,22 @@ GROUP BY organizations.id
 ORDER BY organizations.id
 ```
 
+```
 +----+--------+----------------+
 | id | org_id | camp_name      |
 +----+--------+----------------+
 |    | 1      | soup, foo, foo |
 |    | 2      | , foo, foo     |
 +----+--------+----------------+
+```
 
 ### Scenario 5
 
-Okay, so we got one row per organization with campaign name of our choice on the right. But its slow!. `array_agg` is not performant and kind feels hacky!. Lets explore and use `distinct on`. A distinct on:
+Okay, so we got one row per organization with campaign name of our choice on the right. But its slow!. `array_agg` is not performant and kind feels hacky!. Lets explore and use `distinct on`. 
 
-- takes a comman seperated list of columns on which the row is to be made unique
+A distinct on:
+
+- takes a comma separated list of columns on which the row is to be made unique
 - it doesn't print anything to the output
 - it doesn't expect a comma to be printed after it, this is just like distinct
 - when there are multiple results, it will just pick the first one and skip all other rows till it gets to the next unique row
@@ -330,6 +364,7 @@ INNER JOIN "campaigns" ON "campaigns"."organization_id" = "organizations"."id"
 ORDER BY organizations.id, camp_name
 ``` 
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
@@ -340,8 +375,9 @@ ORDER BY organizations.id, camp_name
 |    | 2      | foo       |
 |    | 2      |           |
 +----+--------+-----------+
+```
 
-Look at the output above very carefully. What we really want is to print row number 1 and row number 4. This is what `distinct on` can exactly do for us. All we have to do is, tell it to make each row distinct based on the org_id. This will reduce the result to 2 rows as we have 2 distinct values of 1 & 2 for org_id. Then we need it to pick up any camp_name. This will happen by default with distinct on as it just picks the first.
+Look at the output above very carefully. What we really want is to print row number 1 and row number 4. This is what `distinct on` can exactly do for us. All we have to do is, tell it to make each row distinct based on the `org_id`. This will reduce the result to 2 rows as we have 2 distinct values of 1 & 2 for `org_id`. Then we need it to pick up any `camp_name`. This will happen by default with `distinct on` as it just picks the first.
 
 ```ruby
 Organization.
@@ -357,16 +393,18 @@ INNER JOIN "campaigns" ON "campaigns"."organization_id" = "organizations"."id"
 ORDER BY organizations.id, camp_name
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
 |    | 1      | foo       |
 |    | 2      | foo       |
 +----+--------+-----------+
+```
 
 ### Scenario 6
 
-Lets say we want the last `campaigns.name` for each organization. This can be easily accomplished by changing the order of things. `disntinct on` will still return the first row which is distinct based on the columns passed to it. What we will do is used order to just change the way things appear in front of distinct on.
+Lets say we want the last `campaigns.name` for each organization. This can be easily accomplished by changing the order of things. `disntinct on` will still return the first row which is distinct based on the columns passed to it. What we will do is use order to just change the way things appear in front of `distinct on`.
 
 Lets first, once again print all the organizations with their campaign names on multiple rows, but this time we will order it so campaign names reversed, i.e. the last campaign name, this time will be the first campaign name
 
@@ -384,6 +422,7 @@ INNER JOIN "campaigns" ON "campaigns"."organization_id" = "organizations"."id"
 ORDER BY organizations.id, camp_name DESC
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
@@ -394,6 +433,7 @@ ORDER BY organizations.id, camp_name DESC
 |    | 2      | foo       |
 |    | 2      | foo       |
 +----+--------+-----------+
+```
 
 Cool, now that we have campaign names flipped, lets add the `distinct on`.
 
@@ -411,12 +451,14 @@ INNER JOIN "campaigns" ON "campaigns"."organization_id" = "organizations"."id"
 ORDER BY organizations.id, camp_name DESC
 ```
 
+```
 +----+--------+-----------+
 | id | org_id | camp_name |
 +----+--------+-----------+
 |    | 1      | soup      |
 |    | 2      |           |
 +----+--------+-----------+
+```
 
 And it works, yay!
 

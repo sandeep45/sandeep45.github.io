@@ -57,7 +57,10 @@ published: True
 - databse view `shift + shift` followed by typing `database`
 - switch between project windows back and forth by `Command + BackTick`  and `Command + Shift + BackTick `
 - Detect's things you are using like webpack, database, npm, .gitignore etc. and automatically suggest to plugins to make life better
-
+- Run a specific test in spec file by bringing the cursor to where where the test code is and hitting `Control + Shift + r`
+- See all test configs in there: `Alt + Command + r`
+- Run the last test config again - `Control + r`
+- Expland or collapse an item by `Command +(plus) or -(minus)` sign
 
 ## References
 
