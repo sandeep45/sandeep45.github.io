@@ -403,24 +403,3 @@ The `find_by_sql` method will return an `array` of objects of **instantiated** `
 `include ActiveModel::Validations`
 `extend ActiveModel::Naming`
 `include ActiveModel::Serialization`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

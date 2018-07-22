@@ -26,16 +26,19 @@ With that said, lets get our hands dirty with ES.
 
 ## Install (ES)
 
+```
 sudo chown -R $(whoami) /usr/local
 brew update
 brew cask install java
 brew install elasticsearch
 brew services start elasticsearch
 brew services list
+```
 
 Test that elastic is up and responding - http://localhost:9200/
 
 Installation is done here:
+
 ```
 /usr/local/etc/elasticsearch
 /usr/local/opt/elasticsearch/libexec
@@ -47,6 +50,7 @@ Installation is done here:
 ## Setup Rails App to use ES
 
 #### Install gems
+
 ```
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'

@@ -73,6 +73,8 @@ published: True
 - Highlight a word and put cursor at next occurrence - `Control + G`
 - Highlight a word and unselect last occurrence - `Control + Shift + G`
 - [More on Multiple Line Cursors](https://blog.jetbrains.com/ruby/2014/03/whats-mining-multiple-cursors-and-selection/)
+- Hold the `ALT` key down and then either click on multiple lines or drag your mouse across multiple lines as you are selecting something. 
+[Screencast](https://screencast.com/t/JzcId3LSN)
 
 ### Side Bar
 
