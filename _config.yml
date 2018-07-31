@@ -18,3 +18,4 @@ kramdown:
   syntax_highlighter: rouge
 plugins:
 - jekyll-feed
+theme: jekyll-theme-cayman
