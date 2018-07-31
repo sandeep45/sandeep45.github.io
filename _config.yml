@@ -9,7 +9,12 @@ url: "http://sandeep45.github.io" # the base hostname & protocol for your site
 twitter_username: sandeeparneja
 github_username:  sandeep45
 # Build settings
-highlighter: rouge
 markdown: kramdown
+highlighter: rouge
+permalink: date
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 plugins:
 - jekyll-feed
