@@ -464,7 +464,7 @@ And it works, yay!
 
 
 ### Side Notes:
-
+- You can get the same result with `distinct` as you would get with `distinct on` if your reduce the columns you are going to select to the same columns you were going to do `distinct on ()`
 - `SELECT DISTINCT ON ( expression [, …] )` **keeps** only the first row of each set of rows where the given expressions evaluate to be unique
 - `distinct on` is kinda working after the fact. It is filtering out rows which match the same clause and keeping the first one, after all the joins and stuff have happened.
 - Best way to think of `distinct on` is to run your query without, let it print duplicate rows the data on left being same, and data on right getting repeated, and then ask yourself would you like to see just the first row of each group. if so add the distinct on. if you want to change how the groupings are defined, then control that by the expressions in distinct on. If you want to change which row should be the first one in each group, then do that by adding orders.

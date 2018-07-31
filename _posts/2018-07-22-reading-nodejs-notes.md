@@ -7,6 +7,75 @@ tags: [NodeJs]
 published: False
 ---
 
+node js -> v8 & libuv
+v8 lets you run JS outside of the browser
+node has modules like fk, http etc. which then call C code in libuv
+libuv lets you access fs, networking, concurrency etc.
+
+`conxt {x} = process.binding('crypto')` is being used to import a function from C world to js world
+
+So you can write your code in C++. then use process.binding to import it in JS and use it via JS.
+`/lib` -> JS code
+`/src` -> C++ code
+
+Threads -> a block of instructions for the CPU to process
+OS Scheduler -> decides which thread runs, manages priority and can detect pauses in threads like when waiting for I/O and run different threads to optimize
+More CPU cores and multi-threading and hyperthreading are ways to process more threads at the same time.
+
+node starts off 1 thread and then starts the event loop in this thread
+tick - every time the event loop runs or circles
+
+setTimeout
+setInterval
+setImmediate
+
+The event loop which node starts up, keeps ticking as long as there is a pending:
+- async function like setTimeout, setInterval or setImmediate
+- OS Call like listening on port
+- Long Running OS operation
+
+Inside the event loop, once it ran, it will do
+1 see if any of the setTimeout or setInterval have been completed and if so it will call its callbacks.
+2 looks at completion of any pending OS tasks or pending long running operations and if so calls their callbacks. 
+3. pauses for a pendingOS Task or pending Long Running Task to finsh or a timer is about to expire. This is important as we have to wait for something to happen otherwise our thread will just keep running at Full Speed and wont let anything else happen normally.
+4.  see if any setImmediate has completed and calls its callbacks
+5. handle any close events
+
+The event loop which node starts when the program starts is in a single thread, but the other things we call from our node program are not necessarily single threaded. They may do things using multiple threads or processes and therefore those things may happen parallely. When they are done, callbacks are fired and then node even loop handles it in its single thread. Some of the other processes you are calling from the node event loop are also written and provided in Node e.g. FS, which utitlize multi threads so if you call them to do multiple things like read file1 and file 2, it can do that parallely. This gives way for us to say that Node is multi-threaded and its just the event loop part which is single threaded.
+
+Libuv has 4 threads to do heavy computation work. The number 4 is because i have 2 cores. And its multithreaded/hyperthreaded. This means that each core can process 2 threads at the same time. It will process 2 threads together, but will take double the time. So now we have 4 threads. Now if we run a libuv task 4 times, they will all 4 of them finish in about the same time and each of them will take double the amount of time they would have taken if only 1 was ran. And finally if a 5th task was ran, it will take longer because it has to wait for a thread to free up.
+
+UV_THREADPOOL_SIZE - We can change the number of our threads in the threadPool for libUv to use. If we increase the number of threads the thread scheduler will make sure that all threads get an equal amount of CPU time. note that this will also equally make them all slower.
+
+`http` module is returning data and calling the callback everytime it gets a chunk of data.
+
+libuv delegates work like http network requests to the OS.
+
+pendingOSTasks is what refers to tasks of networking which are given to the OS
+
+Cluster Mode for boosting performance of nodeJS APP
+Cluster wont work with nodemon, so you have to restart
+
+cluster.isMaster
+cluser.fork()
+
+ab -c 50 -n 500 http://localhost:3000/fast
+
+When we have more processes than the number of cores, and each process is working on a core intensive task, then it will start all tasks together, but because the cores is cycling between various processes, it propotinally takes longer for all the tasks. So if it can now handle 5 times more processes, but then it also takes 5 times longer. 
+On the other hand if we kept the number of process to the same as the number of cores, then we would do work in chunks, and at the least the early onces will return first even if the total time it took is the same.
+Note this applies only in the case that the work being done in CPU core intensive and is locking it up.
+
+PM2 for managing process
+  
+webworker-thread
+Worker
+
+ 
+  
+
+
+ 
+
 ## getting started with nodejs
 .editor
 so cool. i wish ruby had this.
