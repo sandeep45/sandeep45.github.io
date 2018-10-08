@@ -1,0 +1,83 @@
+https://www.postgresql.org/docs/9.1/static/tutorial-window.html
+
+there is one output row for each row in the table
+
+OVER clause causes it to be treated as a window function and computed across an appropriate set of rows.
+
+A window function call always contains an OVER clause directly following the window function's name and argument(s). This is what syntactically distinguishes it from a regular function or aggregate function.
+
+The PARTITION BY list within OVER specifies dividing the rows into groups, or partitions, that share the same values of the PARTITION BY expression(s).
+
+For each row, the window function is computed across the rows that fall into the same partition as the current row.
+
+You can also control the order in which rows are processed by window functions using ORDER BY within OVER. (The window ORDER BY does not even have to match the order in which the rows are output.)
+
+e.g.
+sum
+avg
+count
+rank
+
+the rank function produces a numerical rank within the current row's partition for each distinct ORDER BY value, in the order defined by the ORDER
+
+window function sees the subset of rows produced after filtering with things like where, group, having etc.
+
+you can have multiple window functions, they all work over the orignal same filtered rows
+
+order by can be omitted if order is not important to the window function
+parition by can also be omitted to get just one partition containing all rows.
+
+concept called - window frame
+normally, i.e when no order is present
+window frame has all the rows in the partiion
+sometimes, i.e. when a order by is present
+window frame is all the rows above the current row
+
+There is another important concept associated with window functions: for each row, there is a set of rows within its partition called its window frame. Many (but not all) window functions act only on the rows of the window frame, rather than of the whole partition. By default, if ORDER BY is supplied then the frame consists of all rows from the start of the partition up through the current row, plus any following rows that are equal to the current row according to the ORDER BY clause. When ORDER BY is omitted the default frame consists of all rows in the partition
+
+```
+select * from impressions limit 10;
+
+select count(*) from(select * from impressions limit 10) as first_10_impressions;
+
+select date(created_at) from impressions limit 10;
+
+select date(impressions.created_at), count(*) from impressions group by date(impressions.created_at);
+
+select date(impressions.created_at), count(*) over(PARTITION BY date(impressions.created_at)) as x from impressions;
+
+select distinct domain, sum(bid_price_micros_usd/1000) over(PARTITION BY domain) from impressions;
+select distinct domain, avg(bid_price_micros_usd) over(PARTITION BY domain) from impressions;
+select distinct domain, count(*) over(PARTITION BY domain) from impressions;
+select distinct domain, rank() over(PARTITION BY domain) from impressions;
+
+select domain, id, rank() over(partition by domain ORDER BY id ASC) from impressions;
+select domain, bid_price_micros_usd, rank() over(partition by domain ORDER BY bid_price_micros_usd ASC) from impressions;
+
+select * from accounts;
+
+select distinct date(created_at), domain, count(*) over (PARTITION by date(created_at) ORDER BY date(created_at) ASC) as date_count, count(*) over (partition by domain) as domain_count from impressions;
+
+select domain, rank() over(order by id ASC) from impressions limit 10;
+
+select distinct domain,
+sum(1) over() as running_imp_count
+from impressions;
+
+
+select distinct domain,
+count(*) over(partition by domain) as domain_imp_count,
+count(*) over(order by domain ASC) as running_imp_count,
+count(*) over() as total_imp_count
+from impressions order by domain ASC;
+```
+
+
+Given impressions give me delta_impressions of that day and total impressions count per day
+
+select date(created_at),
+       count(*) over() as total_impressions,
+       count(*) over(partition by date(created_at)) as delta_impressions,
+       count(*) over(order by date(created_at) ASC) as total_impressions
+from impressions;
+
