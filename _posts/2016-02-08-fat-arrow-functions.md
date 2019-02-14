@@ -108,9 +108,10 @@ So far we have seen how the fat-arrow has syntactical changes to the language, m
 JavaScript has lexical scoping. I have earlier covered [Lexical Scoping](http://sandeep45.github.io/javascript/this/es6/fat-arrow/2016/02/03/this-keyword-in-javascript-part2.html). Here is a quick example:
 
 ````
+var f2;
 var f1 = function(){
   var x = "abc";
-  var f2 = function(){
+  f2 = function(){
     var y = "123"
     console.log(y);
     console.log(x);
@@ -118,6 +119,7 @@ var f1 = function(){
 }
 
 f1();
+f2();
 ````
 
 Outputs:

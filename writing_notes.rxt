@@ -84,7 +84,7 @@ In the above function, normally the return statement exectues immediately. But b
 Without `await` we can not access the implictly returned promise. therefore if we want to do this without an await, then we must declare our own promise and return that explicity.
 
 ```
-async function sandeep() {
+function sandeep() {
   console.log("sandeep");
   var a = 0, b = 0;
   var p = new Promise(resolve => {

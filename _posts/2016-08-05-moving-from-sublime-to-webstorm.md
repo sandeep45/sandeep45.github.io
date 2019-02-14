@@ -61,6 +61,7 @@ published: True
 - See all test configs in there: `Alt + Command + r`
 - Run the last test config again - `Control + r`
 - Expland or collapse an item by `Command +(plus) or -(minus)` sign
+- Open Spell Check options, mouse over the item and then hit `Alt Shift Enter`
 
 ## References
 
