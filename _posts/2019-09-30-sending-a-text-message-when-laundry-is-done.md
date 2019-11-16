@@ -87,7 +87,7 @@ Within my raspberry pi, I maintain state of the machine and on state change from
 <img src='/assets/laundry/pic6.jpg' /> <br/><br/>
 <img src='/assets/laundry/pic7.jpg' /> <br/><br/>
 <img src='/assets/laundry/pic8.png' /> <br/><br/>
-<img src='/assets/laundry/pic9.png' /> <br/><br/>
+<img src='/assets/laundry/pic9.png' style="height:800px" /> <br/><br/>
 
 ## Referneces
 
