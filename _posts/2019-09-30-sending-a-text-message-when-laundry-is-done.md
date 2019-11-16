@@ -60,6 +60,8 @@ Within my raspberry pi, I maintain state of the machine and on state change from
 
 - To handle incoming Twilio subscription notifications from people who want to subscribe & unsubscribe I would need to know the IP address of my raspberry pi and then connect that in twilio. Since most homes dont have a fixed IP, I went with spliting the code and putting the twilio related code on heroku which gives me a fixed address. Now twilio can send text message notifications there and my raspberry pi can also notify this heroku server when the washing machine has turned off.
 
+- Since we are accessing the GPIO ports, we need to run the program from `root`. This takes extra attention when setting up startup script via `pm2`. Ensure that the start script has user `root` and home path of `/root`. Always run `pm2` preceded by `sudo` and pass the correct env variables when starting the app before saving current running processes for startup script.
+  
 ## Extras
 
 - Since the current in the secondary circuit is proportional to the current flowing in the primary circuit of the CT, code could be written to track how much electricity is being consumed by the washing machine.
@@ -83,6 +85,9 @@ Within my raspberry pi, I maintain state of the machine and on state change from
 <img src='/assets/laundry/pic4.jpg' /> <br/><br/>
 <img src='/assets/laundry/pic5.jpg' /> <br/><br/>
 <img src='/assets/laundry/pic6.jpg' /> <br/><br/>
+<img src='/assets/laundry/pic7.jpg' /> <br/><br/>
+<img src='/assets/laundry/pic8.png' /> <br/><br/>
+<img src='/assets/laundry/pic9.png' /> <br/><br/>
 
 ## Referneces
 
