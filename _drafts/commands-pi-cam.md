@@ -292,9 +292,9 @@ sudo netstat -ano -p tcp
 
 netstat -vanp tcp | grep 5000
 
-sudo GST_DEBUG=4 AWS_ACCESS_KEY_ID=AKIAJPUYSRNDJ2OEUNPQ AWS_SECRET_ACCESS_KEY=xPH/gDVCpXOqySubVHyhEdvIymNWUukPF/L91gjq AWS_KVS_AUDIO_DEVICE=hw:1,0 ./kinesis_video_gstreamer_audio_video_sample_app test
+sudo GST_DEBUG=4 AWS_ACCESS_KEY_ID=XXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYY AWS_KVS_AUDIO_DEVICE=hw:1,0 ./kinesis_video_gstreamer_audio_video_sample_app test
 
-AWS_ACCESS_KEY_ID=AKIAJPUYSRNDJ2OEUNPQ AWS_SECRET_ACCESS_KEY=xPH/gDVCpXOqySubVHyhEdvIymNWUukPF/L91gjq AWS_KVS_AUDIO_DEVICE=hw:1,0 gst-launch-1.0 -v v4l2src ! videoconvert ! video/x-raw,format=I420 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! queue ! matroskamux name=mux ! fakesink name=sink silent=FALSE alsasrc device=hw:1,0 ! avenc_aac ! aacparse ! audio/mpeg,stream-format=raw ! queue ! mux.
+AWS_ACCESS_KEY_ID=XXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYY AWS_KVS_AUDIO_DEVICE=hw:1,0 gst-launch-1.0 -v v4l2src ! videoconvert ! video/x-raw,format=I420 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! queue ! matroskamux name=mux ! fakesink name=sink silent=FALSE alsasrc device=hw:1,0 ! avenc_aac ! aacparse ! audio/mpeg,stream-format=raw ! queue ! mux.
 
 
 ./kinesis_video_gstreamer_sample_app test -w 640 -h 480 -f 15
@@ -311,13 +311,13 @@ export GST_PLUGIN_PATH=/home/pi/code/amazon-kinesis-video-streams-producer-sdk-c
 gst-inspect-1.0 kvssink
 ./gstreamer-plugin-install-script
 
-gst-launch-1.0 -v v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! x264enc  bframes=0 key-int-max=45 bitrate=500 tune=zerolatency ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test storage-size=128 access-key="AKIAJPUYSRNDJ2OEUNPQ" secret-key="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"
+gst-launch-1.0 -v v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! x264enc  bframes=0 key-int-max=45 bitrate=500 tune=zerolatency ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test storage-size=128 access-key="XXXXXXX" secret-key="YYYYYY"
 
-gst-launch-1.0 -v v4l2src device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test storage-size=128 access-key="AKIAJPUYSRNDJ2OEUNPQ" secret-key="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"
+gst-launch-1.0 -v v4l2src device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test storage-size=128 access-key="XXXXXXX" secret-key="YYYYYY"
 
-gst-launch-1.0 -v v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test access-key="AKIAJPUYSRNDJ2OEUNPQ" secret-key="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"
+gst-launch-1.0 -v v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name=test access-key="XXXXXXX" secret-key="YYYYYY"
 
-gst-launch-1.0 -v v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,width=640,height=480,framerate=30/1,format=I420 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink name=sink stream-name="test" access-key="AKIAJPUYSRNDJ2OEUNPQ" secret-key="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" alsasrc device=hw:1,0 ! audioconvert ! avenc_aac ! queue ! sink.
+gst-launch-1.0 -v v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,width=640,height=480,framerate=30/1,format=I420 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink name=sink stream-name="test" access-key="XXXXXXX" secret-key="YYYYYY" alsasrc device=hw:1,0 ! audioconvert ! avenc_aac ! queue ! sink.
 
 
 
