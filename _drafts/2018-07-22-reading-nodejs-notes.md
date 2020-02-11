@@ -9,7 +9,7 @@ published: False
 
 node js -> v8 & libuv
 v8 lets you run JS outside of the browser
-node has modules like fk, http etc. which then call C code in libuv
+node has modules like fs, http etc. which then call C code in libuv
 libuv lets you access fs, networking, concurrency etc.
 
 `conxt {x} = process.binding('crypto')` is being used to import a function from C world to js world
@@ -41,7 +41,7 @@ Inside the event loop, once it ran, it will do
 4.  see if any setImmediate has completed and calls its callbacks
 5. handle any close events
 
-The event loop which node starts when the program starts is in a single thread, but the other things we call from our node program are not necessarily single threaded. They may do things using multiple threads or processes and therefore those things may happen parallely. When they are done, callbacks are fired and then node even loop handles it in its single thread. Some of the other processes you are calling from the node event loop are also written and provided in Node e.g. FS, which utitlize multi threads so if you call them to do multiple things like read file1 and file 2, it can do that parallely. This gives way for us to say that Node is multi-threaded and its just the event loop part which is single threaded.
+The event loop which node starts when the program starts is in a single thread, but the other things we call from our node program are not necessarily single threaded. They may do things using multiple threads or processes and therefore those things may happen in parallel. When they are done, callbacks are fired and then node's main even loop handles them in its single thread. Some of the other processes you are calling from the node event loop are also written and provided in Node e.g. FS, which utilizes multiple threads so if you call them to do multiple things like read file1 and file 2, it can do that in parallel. This gives way for us to say that Node is multi-threaded and its just the event loop part which is single threaded.
 
 Libuv has 4 threads to do heavy computation work. The number 4 is because i have 2 cores. And its multithreaded/hyperthreaded. This means that each core can process 2 threads at the same time. It will process 2 threads together, but will take double the time. So now we have 4 threads. Now if we run a libuv task 4 times, they will all 4 of them finish in about the same time and each of them will take double the amount of time they would have taken if only 1 was ran. And finally if a 5th task was ran, it will take longer because it has to wait for a thread to free up.
 
@@ -61,14 +61,26 @@ cluser.fork()
 
 ab -c 50 -n 500 http://localhost:3000/fast
 
-When we have more processes than the number of cores, and each process is working on a core intensive task, then it will start all tasks together, but because the cores is cycling between various processes, it propotinally takes longer for all the tasks. So if it can now handle 5 times more processes, but then it also takes 5 times longer. 
+When we have more processes than the number of cores, and each process is working on a core intensive task, then it will start all tasks together, but because the cores is cycling between various processes, it proportionally takes longer for all the tasks. So if it can now handle 5 times more processes, but then it also takes 5 times longer. 
 On the other hand if we kept the number of process to the same as the number of cores, then we would do work in chunks, and at the least the early onces will return first even if the total time it took is the same.
 Note this applies only in the case that the work being done in CPU core intensive and is locking it up.
 
-PM2 for managing process
+Think Wall time, CPU time & User time
+
+User time when we gave all tasks together, is the same and high as all tasks happened together. 
+On the hand when we gave it in chunks of 5, user time for earlier off loaded task is less and high for later off loaded tasks. But this high time is still the same as all the tasks in the first scenerio.
+ 
+Wall time which is the actual time taken by the tasks, is the same regardless of how they are offloaded to the machine. Same goes for CPU time. One may same that wall time is slightly higher when there is a lot of OS Scheduler interference.  
+
+PM2 for managing process.
   
 webworker-thread
 Worker
+
+Passport -> oauth -> Google -> PENDING
+materialize css -> PENDING
+
+
 
  
   
