@@ -39,8 +39,8 @@ Although this gets us the last label, it has a few shortcomings:
 1. It is verbose
 2. It requires too much repeated typing and thus prone to errors
 3. Its harder to test
-4  It doesn't read well
-5. things only get worse when its used in conjunction with another method which gets all labels which start with "A".
+4. It doesn't read well
+5. And things only get worse when its used in conjunction with other methods
 
 Here are 3 ways to approach this:
 1. Modifiers
@@ -49,11 +49,12 @@ Here are 3 ways to approach this:
 
 Lets dive into each of these one-by-one. 
 
-## Modifiers
+## Approach 1: Modifiers
 
 Modifiers is my preferred way to solve this. We specify a function on the modifiers object which:
- 1. receive the query as a param
- 2. it then modifies the query by adding its filters etc.
+ 
+1. receives the `query` as a param
+2. it then modifies the query by adding its filters etc.
  
 ```
 Label.modifiers.last = query => {
@@ -113,9 +114,9 @@ And our logs have:
 select "labels".* from "labels" where "name" like "A%" order by "id" DESC limit 1
 ```
 
-## Class method on Label
+## Approach 2: Class method on Label
 
-A regular static method on label class. We can have this method return the last record:
+A regular static method on Label class. We can have this method return the last record:
 
 ```
 Label.last = () => {
@@ -125,9 +126,11 @@ Label.last = () => {
 
 This gets the job done, but not as good as a modifier function. Yes it reads good and encapsulates the work but it doesn't return the query object and thus can't be chained
 
-## Custom QueryBuilder
+## Approach 3: Custom QueryBuilder
 
-We can define a method on the `query()` object itself. This will allow us to modify the query by calling an internal method of the query object, without writing the words `modify` and explicitly making it clear that we are modifying the query.
+We can build our custom query object and have label class use our query object. On our custom query object we can define a custom methods which modify the  `query()` object directly.
+ 
+ This will allow us to modify the query by calling an internal method of the query object, without writing the words `modify` and explicitly making it clear that we are modifying the query.
 
 Lets see an example:
 
