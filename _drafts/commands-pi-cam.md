@@ -297,7 +297,7 @@ sudo GST_DEBUG=4 AWS_ACCESS_KEY_ID=XXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYY AWS_KVS_
 AWS_ACCESS_KEY_ID=XXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYY AWS_KVS_AUDIO_DEVICE=hw:1,0 gst-launch-1.0 -v v4l2src ! videoconvert ! video/x-raw,format=I420 ! omxh264enc periodicty-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! queue ! matroskamux name=mux ! fakesink name=sink silent=FALSE alsasrc device=hw:1,0 ! avenc_aac ! aacparse ! audio/mpeg,stream-format=raw ! queue ! mux.
 
 
-./kinesis_video_gstreamer_sample_app test -w 640 -h 480 -f 15
+./kinesis_video_gstreamer_sample_app camera1 -w 640 -h 480 -f 15
 ./kinesis_video_gstreamer_sample_app AmazonRekognitionVideoPlayback -w 640 -h 480 -f 15
 
 add GST_DEBUG=4 for more debugging
