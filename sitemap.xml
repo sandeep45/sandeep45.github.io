@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://sandeep45.github.io/</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/about/</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/notes.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/nodejs/orm/objectionjs/2020/03/17/rails_like_scope_methods_in_objection_nodejs.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/jest/aws/2020/02/10/mocking-an-aws-service-with-jest.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/async/await/2019/12/01/iterating-and-calling-async-functions.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/nodejs/javascript/raspberrypi/2019/09/30/sending-a-text-message-when-laundry-is-done.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/sql/postgresql/window/2019/09/13/window_function.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/redux/react/react-router/2019/02/11/aysnc_await.js.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/nodejs/es6/2019/02/11/ES6_Primer.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/postgresql/sql/rails/distinct/distinct_on/2018/07/22/distinct-vs-distinct-on.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/postgresql/rails/sql/database/2018/07/22/Postgresql-takes-too-long-with-order-and-limit.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/resque/rails/2017/09/26/adding-resque-to-rails.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/rails/elasticsearch/2017/09/12/setting-up-elastic-with-rails.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/redux/react/react-router/2017/09/11/new-rails-app.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/aws/s3/cloudfront/route%2053%20react/react-router/2017/05/25/setting-up-static-website-to-aws-s3.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/redux/react/react-router/2017/02/24/Deploying-redux-react-app-to-production.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/rails5/postgresql/2017/01/23/mass-insert-or-update.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/redux/react/react-router/2016/08/23/notes-while-reading-rails5-guide.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/webstorm/sublime%20text%203/2016/08/05/moving-from-sublime-to-webstorm.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/redux/react/react-router/2016/07/26/changing-route-from-actions.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/mocha/nock/react/redux/testing/2016/07/24/using-nock-for-testing-ajax-requests.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/rails/authentication/2016/07/24/token-based-authentication.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/es6/functional/2016/07/03/docker-the-what-why-how.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/es6/functional/2016/06/18/currying.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/es6/functions/2016/02/08/fat-arrow-functions.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/es6/2016/02/04/prototype-chain.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/es6/classes/javascript/2016/02/04/classes.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/this/es6/fat-arrow/2016/02/03/this-keyword-in-javascript-part2.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/jquery/2015/11/13/queue-system-using-jquery.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/postman/ajax/json/2015/10/08/making-json-post-with-postman.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/json/activerecord/postgres/rails/2015/10/06/json-properties-in-postgres.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/service%20objects/rails/2015/10/01/service-object-part-2.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/service%20objects/rails/2015/09/30/service-objects.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/rails/rspec/testing/active_record/2015/09/08/testing-a-model-method.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/testing/rspec/rails/2015/09/07/mocking-in-rspec.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/ruby/2015/08/24/how-to-tap-in-ruby.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/2015/08/24/blackjack-perfect-strategy.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/rails/testing/2015/08/14/testing-webhooks.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/promises/2015/07/16/promises-then-vs-done-in-deferred-object.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/2015/07/08/chaining-ajax-requests.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/2015/07/06/sample-requirejs-app.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/2015/07/02/getting-started-with-requirejs.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/sql/2015/06/21/joins.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javascript/2015/06/10/event-bubbling-vs-capturing.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/javscript/2015/06/09/this-keyword-in-javascript.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/2015/06/03/quick-webserver.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/2014/10/01/rds-vs-managed-databse-on-ec2-via-cloud66.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/devops/2014/09/29/too-many-ttj-requests.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sandeep45.github.io/devops/2014/09/29/move-logs-on-aws-to-a-different-drive.html</loc>
+  <lastmod>2020-03-10T02:40:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
